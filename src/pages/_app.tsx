@@ -30,8 +30,10 @@ const createGlobalStyles = (theme: Theme) => css`
     position: relative;
     box-sizing: border-box;
     font-family: ${theme.fontFamily.normal};
+    overscroll-behavior: none;
   }
-  #app {
+  #app,
+  #__next {
     ${baseStyle};
   }
   div,
@@ -56,6 +58,7 @@ const createGlobalStyles = (theme: Theme) => css`
 
 const GlobalWrapper = styled(FlexBox)`
   width: 100%;
+  min-height: 100%;
   overflow: hidden;
 `;
 

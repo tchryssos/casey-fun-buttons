@@ -1,22 +1,18 @@
-import { useContext } from 'react';
+import random from 'lodash.random';
+import { useRouter } from 'next/dist/client/router';
+import { useEffect } from 'react';
 
-import { Layout } from '~/components/meta/Layout';
-import { Body } from '~/components/typography/Body';
-import { BreakpointsContext } from '~/logic/contexts/breakpointsContext';
+import { BUTTON_ROUTES } from '~/constants/routing';
 
 const Home: React.FC = () => {
-  const breakpoints = useContext(BreakpointsContext);
-  return (
-    <Layout>
-      <Body>
-        Welcome to Next JS! Edit src/pages/index.tsx to get started...
-      </Body>
-      <Body bold>
-        The current breakpoint is &apos;{breakpoints[breakpoints.length - 1]}
-        &apos;
-      </Body>
-    </Layout>
-  );
+  const { push } = useRouter();
+
+  useEffect(() => {
+    const nextPath = BUTTON_ROUTES[random(0, BUTTON_ROUTES.length - 1)];
+    push(`/${nextPath}`);
+  }, [push]);
+
+  return null;
 };
 
 export default Home;
