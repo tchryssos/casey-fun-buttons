@@ -1,6 +1,6 @@
-import { css, keyframes } from '@emotion/react';
+import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 import { FlexBox } from '~/components/box/FlexBox';
 import { Button } from '~/components/Button';
