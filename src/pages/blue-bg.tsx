@@ -1,11 +1,16 @@
+import { css, keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
+import { useRef, useState } from 'react';
 
 import { FlexBox } from '~/components/box/FlexBox';
 import { Button } from '~/components/Button';
 import { Layout } from '~/components/meta/Layout';
 import { Body } from '~/components/typography/Body';
 import { useGetPushFn } from '~/logic/routing';
-import { pxToRem } from '~/logic/util/styles';
+import { delay } from '~/logic/util/delay';
+import { pxToRem, toggleAnimation } from '~/logic/util/styles';
+
+const animationTimer = 2000;
 
 const Background = styled(FlexBox)`
   min-height: 100%;
@@ -13,13 +18,24 @@ const Background = styled(FlexBox)`
   background-color: #6495ed;
 `;
 
-const FunButton = styled(Button)`
+const growFontSize = keyframes`
+  from {
+    font-size: initial;
+  }
+  to {
+    font-size:  ${pxToRem(200)};
+  }
+`;
+
+const FunButton = styled(Button)<{ isTransitioning: boolean }>`
   padding: ${pxToRem(20)} ${pxToRem(40)};
   background-color: #ff0000;
   text-align: center;
   color: #fff;
   border-radius: ${pxToRem(8)};
   transition: transform 0.5s, background-color 0.5s;
+  ${({ isTransitioning }) =>
+    toggleAnimation(growFontSize, animationTimer, isTransitioning)}
 
   &:hover {
     background-color: #ffa500;
@@ -28,12 +44,19 @@ const FunButton = styled(Button)`
 `;
 
 const BlueBg: React.FC = () => {
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const push = useGetPushFn();
+
+  const onClick = async () => {
+    setIsTransitioning(true);
+    await delay(null, animationTimer);
+    push();
+  };
 
   return (
     <Layout>
       <Background center>
-        <FunButton onClick={push}>
+        <FunButton isTransitioning={isTransitioning} onClick={onClick}>
           <Body>Click Me</Body>
         </FunButton>
       </Background>

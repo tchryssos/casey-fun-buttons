@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 interface ButtonProps {
-  onClick: () => void;
+  onClick: (() => Promise<void>) | (() => void);
   className?: string;
   disabled?: boolean;
   children: React.ReactNode;
