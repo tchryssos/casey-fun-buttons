@@ -15,7 +15,7 @@ const animationTimer = 2000;
 const Background = styled(FlexBox)`
   min-height: 100%;
   width: 100%;
-  background-color: #6495ed;
+  background-color: cornflowerblue;
 `;
 
 const growFontSize = keyframes`
@@ -29,9 +29,9 @@ const growFontSize = keyframes`
 
 const FunButton = styled(Button)<{ isTransitioning: boolean }>`
   padding: ${pxToRem(20)} ${pxToRem(40)};
-  background-color: #ff0000;
+  background-color: red;
   text-align: center;
-  color: #fff;
+  color: white;
   border-radius: ${pxToRem(8)};
   transition: transform 0.5s, background-color 0.5s;
   ${({ isTransitioning }) =>
