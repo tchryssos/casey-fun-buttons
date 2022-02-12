@@ -38,7 +38,7 @@ const FunButton = styled(Button)<{ isTransitioning: boolean }>`
     toggleAnimation(growFontSize, animationTimer, isTransitioning)}
 
   &:hover {
-    background-color: #ffa500;
+    background-color: orange;
     transform: rotate(-6deg);
   }
 `;
