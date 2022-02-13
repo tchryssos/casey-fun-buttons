@@ -21,7 +21,7 @@ const baseStyle = css`
 `;
 
 const createGlobalStyles = (theme: Theme) => css`
-  /* @import url(''); */
+  @import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@300&display=swap');
   html {
     ${baseStyle};
   }

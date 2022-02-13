@@ -9,6 +9,6 @@ export const toggleAnimation = (
 ) =>
   playAnimation
     ? css`
-        animation: ${animation} ${animationMs}ms;
+        animation: ${animation} ${animationMs}ms forwards;
       `
     : '';

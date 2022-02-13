@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 import { FlexBox } from '~/components/box/FlexBox';
 import { Button } from '~/components/Button';
 import { Layout } from '~/components/meta/Layout';
-import { Body } from '~/components/typography/Body';
 import { useGetPushFn } from '~/logic/routing';
 import { pxToRem } from '~/logic/util/styles';
 
@@ -27,7 +26,7 @@ const White: React.FC = () => {
     <Layout>
       <Background center>
         <FunButton onClick={push}>
-          <Body>Click Me</Body>
+          <p>Click Me</p>
         </FunButton>
       </Background>
     </Layout>
