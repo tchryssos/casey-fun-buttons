@@ -72,14 +72,14 @@ const AnimatedLine = styled(Line)<{ isTransitioning: boolean; index: number }>(
   })
 );
 
-const White: React.FC = () => {
+const BeigeThreeD: React.FC = () => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const push = useGetPushFn();
 
   const onClick = async () => {
     setIsTransitioning(true);
     await delay(null, animationTimer);
-    // push();
+    push();
   };
 
   return (
@@ -103,4 +103,4 @@ const White: React.FC = () => {
   );
 };
 
-export default White;
+export default BeigeThreeD;
