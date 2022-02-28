@@ -9,7 +9,7 @@ import { useGetPushFn } from '~/logic/routing';
 import { delay } from '~/logic/util/delay';
 import { pxToRem, toggleAnimation } from '~/logic/util/styles';
 
-const animationTimer = 2000;
+const animationTimer = 500;
 
 const createGrowLine = (index: number) => {
   const rotation =
