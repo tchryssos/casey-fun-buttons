@@ -25,7 +25,7 @@ const ButtonStarColor = keyframes`
     fill: #F74DF0;
   }
   25%, 75% {
-    fill: limegreen;
+    fill: #FAD951;
   }
   75%, 100% {
     fill: #F74DF0;
@@ -37,26 +37,26 @@ const BackgroundStarSpin = keyframes`
     transform: rotate3d(0 ,1, 0, 0);
   }
   to {
-    transform: rotate3d(0 ,1, 0, 180deg);
+    transform: rotate3d(0 ,1, 0, 360deg);
   }
 `;
 
 const BackgroundColorChange = keyframes`
   0%, 25% {
-    fill: #efefef;
+    fill: #C6E5D0;
   }
   25%, 75% {
     fill: limegreen;
   }
   75%, 100% {
-    fill: #efefef;
+    fill: #C6E5D0;
   }
 `;
 
 const Background = styled(FlexBox)`
   min-height: 100%;
   width: 100%;
-  background-color: white;
+  background-color: #c6e5d0;
 `;
 
 const Star = styled.svg`
@@ -73,16 +73,22 @@ const BigStar = styled.svg<{ isTransitioning: boolean }>`
 `;
 
 const BigStarPath = styled.path<{ isTransitioning: boolean }>`
-  fill: #efefef;
+  fill: #c6e5d0;
   ${({ isTransitioning }) =>
-    toggleAnimation(BackgroundColorChange, animationTimer, isTransitioning)}
+    toggleAnimation(
+      BackgroundColorChange,
+      animationTimer,
+      isTransitioning,
+      'steps(1, end)'
+    )}
 `;
 
 const FunButton = styled(Button)`
   position: fixed;
   cursor: pointer;
   z-index: 100;
-  background-color: white;
+  background-color: #1f4d30;
+  color: white;
   border: 1px solid #e0e0e0;
   box-shadow: 0px 4px 5px 0px #00000015;
   padding: 12px 32px;
@@ -122,17 +128,30 @@ const Spin: React.FC = () => {
           </Star>
           <p>Click Me</p>
         </FunButton>
-        <BigStar
-          isTransitioning={isTransitioning}
-          viewBox="0 0 70 70"
-          xmlns="http://www.w3.org/200Big"
-        >
-          <BigStarPath
-            d="m34 0 6.49 15.028 14.082-8.344-3.583 15.973 16.298 1.527L55 35l12.287 10.816-16.298 1.527 3.584 15.973-14.084-8.344L34 70l-6.49-15.028-14.083 8.344 3.584-15.973L.713 45.816 13 35 .713 24.184l16.298-1.527-3.583-15.973 14.083 8.344L34 0Z"
-            fill="#F74DF0"
+        <FlexBox>
+          <BigStar
             isTransitioning={isTransitioning}
-          />
-        </BigStar>
+            viewBox="0 0 70 70"
+            xmlns="http://www.w3.org/200Big"
+          >
+            <BigStarPath
+              d="m34 0 6.49 15.028 14.082-8.344-3.583 15.973 16.298 1.527L55 35l12.287 10.816-16.298 1.527 3.584 15.973-14.084-8.344L34 70l-6.49-15.028-14.083 8.344 3.584-15.973L.713 45.816 13 35 .713 24.184l16.298-1.527-3.583-15.973 14.083 8.344L34 0Z"
+              fill="#F74DF0"
+              isTransitioning={isTransitioning}
+            />
+          </BigStar>
+          <BigStar
+            isTransitioning={isTransitioning}
+            viewBox="0 0 70 70"
+            xmlns="http://www.w3.org/200Big"
+          >
+            <BigStarPath
+              d="m34 0 6.49 15.028 14.082-8.344-3.583 15.973 16.298 1.527L55 35l12.287 10.816-16.298 1.527 3.584 15.973-14.084-8.344L34 70l-6.49-15.028-14.083 8.344 3.584-15.973L.713 45.816 13 35 .713 24.184l16.298-1.527-3.583-15.973 14.083 8.344L34 0Z"
+              fill="#F74DF0"
+              isTransitioning={isTransitioning}
+            />
+          </BigStar>
+        </FlexBox>
       </Background>
     </Layout>
   );
