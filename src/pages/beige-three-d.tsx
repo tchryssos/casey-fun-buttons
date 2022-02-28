@@ -13,13 +13,15 @@ const animationTimer = 2000;
 
 const createGrowLine = (index: number) => {
   const rotation =
-    index < 4 ? `${index * 12 * -1 - 66}deg` : `${(index - 4) * 12 + 66}deg`;
+    index < 4 ? `${index * 10 * -1 + 20}deg` : `${(index - 4) * 10 - 20}deg`;
+  const translationStart = index < 4 ? '0' : '-100%';
+  const translationEnd = index < 4 ? '-100%' : '100%';
   return keyframes`
-  to {
-    transform: scale(100%) rotate(${rotation});
-  }
   from {
-    transform: scale(0%) rotate(${rotation});
+    transform: translateX(${translationStart}) translateY(20px) rotate(${rotation});
+  }
+  to {
+    transform: translateX(${translationEnd}) translateY(20px) rotate(${rotation});
   }
 `;
 };
@@ -53,6 +55,7 @@ const FunButton = styled(Button)<{ isTransitioning: boolean }>`
   border-radius: ${pxToRem(100)};
   font-size: 2em;
   box-shadow: 0px 20px 0px 0px #000000;
+  z-index: 2;
   ${({ isTransitioning }) => toggleAnimation(buttonDown, 500, isTransitioning)}
 `;
 
@@ -65,16 +68,17 @@ const Line: React.FC<LineProps> = ({ color, className }) => (
   <svg
     className={className}
     fill="none"
-    height="62"
-    width="6"
+    viewBox="0 0 48 6"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <path d="M3 45V3" stroke={color} strokeLinecap="round" strokeWidth="6" />
+    <path d="M3 3L45 3" stroke={color} strokeLinecap="round" strokeWidth="6" />
   </svg>
 );
 
 const AnimatedLine = styled(Line)<{ isTransitioning: boolean; index: number }>(
   ({ isTransitioning, index }) => css`
+    width: 3rem;
+    display: ${isTransitioning ? 'block' : 'none'};
     position: absolute;
     left: ${index < 4 ? 0 : ''};
     right: ${index >= 4 ? 0 : ''};
