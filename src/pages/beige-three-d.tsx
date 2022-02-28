@@ -1,4 +1,4 @@
-import { keyframes } from '@emotion/react';
+import { css, keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
@@ -10,6 +10,19 @@ import { delay } from '~/logic/util/delay';
 import { pxToRem, toggleAnimation } from '~/logic/util/styles';
 
 const animationTimer = 2000;
+
+const createGrowLine = (index: number) => {
+  const rotation =
+    index < 4 ? `${index * 12 * -1 - 66}deg` : `${(index - 4) * 12 + 66}deg`;
+  return keyframes`
+  to {
+    transform: scale(100%) rotate(${rotation});
+  }
+  from {
+    transform: scale(0%) rotate(${rotation});
+  }
+`;
+};
 
 const Background = styled(FlexBox)`
   min-height: 100%;
@@ -61,15 +74,13 @@ const Line: React.FC<LineProps> = ({ color, className }) => (
 );
 
 const AnimatedLine = styled(Line)<{ isTransitioning: boolean; index: number }>(
-  ({ isTransitioning, index }) => ({
-    position: 'absolute',
-    left: index < 4 ? 0 : '',
-    right: index >= 4 ? 0 : '',
-    top: index < 4 ? `${index * 33}%` : `${(index - 4) * 33}%`,
-    transform: `rotate(${
-      index < 4 ? `${index * 12 * -1 - 66}deg` : `${(index - 4) * 12 + 66}deg`
-    })`,
-  })
+  ({ isTransitioning, index }) => css`
+    position: absolute;
+    left: ${index < 4 ? 0 : ''};
+    right: ${index >= 4 ? 0 : ''};
+    top: ${index < 4 ? `${index * 33}%` : `${(index - 4) * 33}%`};
+    ${toggleAnimation(createGrowLine(index), animationTimer, isTransitioning)};
+  `
 );
 
 const BeigeThreeD: React.FC = () => {
@@ -79,21 +90,53 @@ const BeigeThreeD: React.FC = () => {
   const onClick = async () => {
     setIsTransitioning(true);
     await delay(null, animationTimer);
-    push();
+    /* push(); */
   };
 
   return (
     <Layout>
       <Background center>
         <ButtonWrapper>
-          <AnimatedLine color="#E77373" index={0} />
-          <AnimatedLine color="#22EBD3" index={1} />
-          <AnimatedLine color="#FFFFFF" index={2} />
-          <AnimatedLine color="#FDAA2D" index={3} />
-          <AnimatedLine color="#1A0DE2" index={4} />
-          <AnimatedLine color="#0DE23C" index={5} />
-          <AnimatedLine color="#1A0DE2" index={6} />
-          <AnimatedLine color="#F64DF0" index={7} />
+          <AnimatedLine
+            color="#E77373"
+            index={0}
+            isTransitioning={isTransitioning}
+          />
+          <AnimatedLine
+            color="#22EBD3"
+            index={1}
+            isTransitioning={isTransitioning}
+          />
+          <AnimatedLine
+            color="#FFFFFF"
+            index={2}
+            isTransitioning={isTransitioning}
+          />
+          <AnimatedLine
+            color="#FDAA2D"
+            index={3}
+            isTransitioning={isTransitioning}
+          />
+          <AnimatedLine
+            color="#1A0DE2"
+            index={4}
+            isTransitioning={isTransitioning}
+          />
+          <AnimatedLine
+            color="#0DE23C"
+            index={5}
+            isTransitioning={isTransitioning}
+          />
+          <AnimatedLine
+            color="#1A0DE2"
+            index={6}
+            isTransitioning={isTransitioning}
+          />
+          <AnimatedLine
+            color="#F64DF0"
+            index={7}
+            isTransitioning={isTransitioning}
+          />
           <FunButton isTransitioning={isTransitioning} onClick={onClick}>
             <p>click me!</p>
           </FunButton>
