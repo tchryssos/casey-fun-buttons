@@ -9,19 +9,32 @@ import { useGetPushFn } from '~/logic/routing';
 import { delay } from '~/logic/util/delay';
 import { pxToRem, toggleAnimation } from '~/logic/util/styles';
 
-const animationTimer = 500;
+const animationTimer = 1500;
 
 const createGrowLine = (index: number) => {
+  let translationStart = 0;
+  let translationEnd = -100;
+  if (index === 1 || index === 2) {
+    translationEnd = -115;
+  }
+  if (index >= 4) {
+    translationStart = -100;
+    translationEnd = 100;
+    if (index === 5 || index === 6) {
+      translationEnd = 115;
+    }
+  }
+
   const rotation =
-    index < 4 ? `${index * 10 * -1 + 20}deg` : `${(index - 4) * 10 - 20}deg`;
-  const translationStart = index < 4 ? '0' : '-100%';
-  const translationEnd = index < 4 ? '-100%' : '100%';
+    index < 4
+      ? `${index * 12.5 * -1 + 20}deg`
+      : `${(index - 4) * 12.5 - 20}deg`;
   return keyframes`
   from {
-    transform: translateX(${translationStart}) translateY(20px) rotate(${rotation});
+    transform: translateX(${translationStart}%) translateY(20px) rotate(${rotation});
   }
   to {
-    transform: translateX(${translationEnd}) translateY(20px) rotate(${rotation});
+    transform: translateX(${translationEnd}%) translateY(20px) rotate(${rotation});
   }
 `;
 };
@@ -83,7 +96,8 @@ const AnimatedLine = styled(Line)<{ isTransitioning: boolean; index: number }>(
     left: ${index < 4 ? 0 : ''};
     right: ${index >= 4 ? 0 : ''};
     top: ${index < 4 ? `${index * 33}%` : `${(index - 4) * 33}%`};
-    ${toggleAnimation(createGrowLine(index), animationTimer, isTransitioning)};
+    ${toggleAnimation(createGrowLine(index), 500, isTransitioning)};
+    animation-delay: ${index < 4 ? index * 50 : (index - 4) * 50}ms;
   `
 );
 
@@ -94,7 +108,7 @@ const BeigeThreeD: React.FC = () => {
   const onClick = async () => {
     setIsTransitioning(true);
     await delay(null, animationTimer);
-    /* push(); */
+    push();
   };
 
   return (

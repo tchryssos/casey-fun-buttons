@@ -11,6 +11,20 @@ import { toggleAnimation } from '~/logic/util/styles';
 
 const animationTimer = 2000;
 
+/**
+ * const animationTiming = 2000
+ * const stars = [1, 1, 1, 1, 1, 1, 1, 1]
+ *
+ * const StarComponent = styled('svg')`
+ *  animation-delay: ${({ index }) => `${index * (animationTiming / stars.length)}ms`}
+ * `
+ *
+ * ...
+ * stars.map((star, i) => {
+ *  <StarComponent index={i} />
+ * })
+ */
+
 const ButtonStarSpin = keyframes`
   from {
     transform: rotate3d(0 ,1, 0, 0);
