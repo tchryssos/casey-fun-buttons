@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 
 import { FlexBox } from '~/components/box/FlexBox';
+import { Button } from '~/components/Button';
 import { Layout } from '~/components/meta/Layout';
 import { useGetPushFn } from '~/logic/routing';
 import { delay } from '~/logic/util/delay';
@@ -33,7 +34,7 @@ const Background = styled(FlexBox)`
   cursor: url('/pinkcursor.png'), auto;
 `;
 
-const FunButton = styled(FlexBox)<{ isTransitioning: boolean }>`
+const FunButton = styled(Button)<{ isTransitioning: boolean }>`
   background: linear-gradient(
     45deg,
     #e882ba 43.53%,
