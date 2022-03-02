@@ -1,5 +1,5 @@
 // import { keyframes } from '@emotion/react';
-import { keyframes } from '@emotion/react';
+import { css, keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
@@ -8,7 +8,7 @@ import { Button } from '~/components/Button';
 import { Layout } from '~/components/meta/Layout';
 import { useGetPushFn } from '~/logic/routing';
 import { delay } from '~/logic/util/delay';
-// import { toggleAnimation } from '~/logic/util/styles';
+import { toggleAnimation } from '~/logic/util/styles';
 
 const animationTimer = 2000;
 
@@ -21,6 +21,37 @@ const Shine = keyframes`
   }
   100% {
     background-position: 0%;
+  }
+`;
+
+const DisplayBubble = keyframes`
+  0% {
+    opacity: 0;
+    transform: translate(4em, 5em) rotate(0deg);
+  }
+  70% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(10em, 10em) rotate(720deg);
+  }
+`;
+
+const DisplayBubble1 = keyframes`
+  0% {
+    opacity: 0;
+    transform: translate(-2em, 1em) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-2em, 1em) rotate(360deg);
   }
 `;
 
@@ -50,10 +81,35 @@ const FunButton = styled(Button)<{ isTransitioning: boolean }>`
   width: 40vw;
   padding: 1rem;
   cursor: url('/greencursor.png'), pointer;
-  animation: ${Shine} 5s infinite;
+  animation: ${Shine} 4s infinite;
   &:hover {
     cursor: url('/greencursor.png'), pointer;
   }
+`;
+
+const Bubble1 = styled.div<{ isTransitioning: boolean }>`
+  background-image: url('/Star4.png');
+  background-size: contain;
+  height: 2rem;
+  width: 2rem;
+  opacity: 0;
+  ${({ isTransitioning }) =>
+    toggleAnimation(DisplayBubble1, animationTimer, isTransitioning, 'linear')}
+`;
+
+const Bubble2 = styled.div<{ isTransitioning: boolean }>`
+  background: radial-gradient(
+    67.92% 67.92% at 64.15% 32.08%,
+    #ece3e5 0%,
+    rgba(221, 131, 62, 0) 100%
+  );
+  border-radius: 100%;
+  background-size: contain;
+  height: 2rem;
+  width: 2rem;
+  opacity: 0;
+  ${({ isTransitioning }) =>
+    toggleAnimation(DisplayBubble, animationTimer, isTransitioning, 'linear')}
 `;
 
 const ClickMeCutOut = styled.svg`
@@ -74,7 +130,9 @@ const Gradient: React.FC = () => {
   return (
     <Layout>
       <Background center>
-        <FunButton>
+        <Bubble1 isTransitioning={isTransitioning} />
+        <Bubble2 isTransitioning={isTransitioning} />
+        <FunButton onClick={onClick}>
           <ClickMeCutOut
             fill="none"
             viewBox="0 0 697 106"
