@@ -124,7 +124,7 @@ const Gradient: React.FC = () => {
   const onClick = async () => {
     setIsTransitioning(true);
     await delay(null, animationTimer);
-    // push();
+    push();
   };
 
   return (

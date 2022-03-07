@@ -23,26 +23,32 @@ const loadingFillIn = keyframes`
 const Background = styled(FlexBox)<{ isTransitioning: boolean }>`
   min-height: 100%;
   width: 100%;
-  background: linear-gradient(to right, blue 50%, navy 50%);
+  background: linear-gradient(to right, #a6fa4e 50%, #efefef 50%);
   background-size: 200% 100%;
   background-position: 100%;
+  align-items: flex-end;
+  padding: 5rem;
   ${({ isTransitioning }) =>
     toggleAnimation(loadingFillIn, animationTimer, isTransitioning)}
 `;
 
 const FunButton = styled(Button)<{ isTransitioning: boolean }>`
-  border: 1px solid white;
-  background: linear-gradient(to right, green 50%, navy 50%);
+  border: 2px solid #2b2b2b;
+  background: linear-gradient(to right, #a6fa4e 50%, #efefef 50%);
   background-size: 200% 100%;
   background-position: 100%;
-  color: white;
-  border-radius: 4px;
+  color: #2b2b2b;
+  border-radius: 50px;
   font-size: 32px;
-  font-family: 'Rowdies', cursive;
+  font-family: 'Manrope', sans-serif;
   padding: 20px 80px;
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 4px 10px 0px #a6fa4e;
+  transition: border-radius 250ms linear;
   ${({ isTransitioning }) =>
     toggleAnimation(loadingFillIn, animationTimer, isTransitioning)}
+  :hover {
+    border-radius: 10px;
+  }
 `;
 
 const Loading: React.FC = () => {

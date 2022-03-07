@@ -6,5 +6,4 @@ export const BUTTON_ROUTES = [
   'loading',
   'gradient',
   'spin',
-  'circle',
 ];
