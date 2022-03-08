@@ -71,7 +71,7 @@ const FunButton = styled(Button)<{ isTransitioning: boolean }>`
   z-index: 2;
   ${({ isTransitioning }) => toggleAnimation(buttonDown, 500, isTransitioning)}
   :hover {
-    background-color: white;
+    background-color: #f8c81f;
   }
 `;
 

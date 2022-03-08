@@ -32,7 +32,8 @@ const Corners = keyframes`
 const Background = styled(FlexBox)`
   min-height: 100%;
   width: 100%;
-  background-image: linear-gradient(0deg, #ffe66d 0%, white 100%);
+  /* background-image: linear-gradient(0deg, #ffe66d 0%, white 100%); */
+  background-color: #2727e6;
   cursor: url('/wave.png'), auto;
 `;
 
@@ -50,12 +51,15 @@ const FunButton = styled(Button)`
   :hover {
     transform: scale(1.5);
     animation: none;
-    background-color: #2727e6;
-    color: white;
+    background-color: #ffe66d;
+    color: #2727e6;
+    border: none;
   }
 `;
 
 const ButtonBox = styled(FlexBox)`
+  font-family: 'Inconsolata', serif;
+  text-align: center;
   background-color: white;
   width: 50vw;
   height: 50vh;
@@ -63,7 +67,7 @@ const ButtonBox = styled(FlexBox)`
   justify-content: center;
   padding: 2rem;
   flex-direction: column;
-  border: 2px solid #2727e6;
+  border: 5px solid #ffe66d;
 `;
 
 const Loading: React.FC = () => {
@@ -80,7 +84,13 @@ const Loading: React.FC = () => {
     <Layout>
       <Background center>
         <ButtonBox>
-          <p> Fun buttons is a ... project</p>
+          <p>
+            {' '}
+            This is a ... project ... collection of fun buttons designed and
+            built by Casey Bradford - link to portfolio. To practice working
+            with css, typescript, next. To create some maybe outrageuos moments
+            that dont exist in typical corporate product design work.
+          </p>
           <FunButton onClick={onClick}>
             <p>Enter</p>
           </FunButton>
