@@ -21,7 +21,7 @@ const baseStyle = css`
 `;
 
 const createGlobalStyles = (theme: Theme) => css`
-  @import url('https://fonts.googleapis.com/css2?family=Manrope&family=Oleo+Script+Swash+Caps&family=Poppins&family=Rowdies:wght@300&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&&family=Manrope&family=Oleo+Script+Swash+Caps&family=Poppins&family=Rowdies:wght@300&display=swap');
   html {
     ${baseStyle};
   }
