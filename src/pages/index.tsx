@@ -1,4 +1,4 @@
-import random from 'lodash.random';
+import { random } from 'lodash';
 import { useRouter } from 'next/dist/client/router';
 import { useEffect } from 'react';
 

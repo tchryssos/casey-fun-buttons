@@ -1,4 +1,4 @@
-import random from 'lodash.random';
+import { random } from 'lodash';
 import { useRouter } from 'next/router';
 
 import { BUTTON_ROUTES } from '~/constants/routing';

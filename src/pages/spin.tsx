@@ -7,7 +7,7 @@ import { Button } from '~/components/Button';
 import { Layout } from '~/components/meta/Layout';
 import { useGetPushFn } from '~/logic/routing';
 import { delay } from '~/logic/util/delay';
-import { toggleAnimation } from '~/logic/util/styles';
+import { toggleAnimation, useBreakpointsLessThan } from '~/logic/util/styles';
 
 const animationTimer = 4000;
 
@@ -88,11 +88,25 @@ const FunButton = styled(Button)`
   border-radius: 10px;
   font-size: 30px;
   font-family: 'Poppins', sans-serif;
-  &:hover ${Star} {
+  ${Star} {
     animation: ${ButtonStarSpin} 2s linear infinite;
   }
-  &:hover ${ButtonStarPath} {
+  ${ButtonStarPath} {
     animation: ${ButtonStarColor} 2s steps(1, end) infinite;
+  }
+  ${({ theme }) => theme.breakpoints.sm} {
+    ${Star} {
+      animation: none;
+    }
+    ${ButtonStarPath} {
+      animation: none;
+    }
+    :hover ${Star} {
+      animation: ${ButtonStarSpin} 2s linear infinite;
+    }
+    :hover ${ButtonStarPath} {
+      animation: ${ButtonStarColor} 2s steps(1, end) infinite;
+    }
   }
 `;
 
@@ -198,6 +212,7 @@ const Spin: React.FC = () => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const push = useGetPushFn();
 
+  const lessThanSm = useBreakpointsLessThan('sm');
   const onClick = async () => {
     setIsTransitioning(true);
     await delay(null, animationTimer);

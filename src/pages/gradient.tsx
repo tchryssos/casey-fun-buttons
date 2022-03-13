@@ -24,10 +24,10 @@ const Shine = keyframes`
   }
 `;
 
-const DisplayBubble = keyframes`
+const RockAnimation = keyframes`
   0% {
     opacity: 0;
-    transform: translate(4em, 5em) rotate(0deg);
+    transform: translate(0, 0) rotate(0deg);
   }
   70% {
     opacity: 1;
@@ -37,21 +37,21 @@ const DisplayBubble = keyframes`
   }
   100% {
     opacity: 0;
-    transform: translate(10em, 10em) rotate(720deg);
+    transform: translate(5em, 5em) rotate(720deg);
   }
 `;
 
-const DisplayBubble1 = keyframes`
+const StarAnimation = keyframes`
   0% {
     opacity: 0;
-    transform: translate(-2em, 1em) rotate(0deg);
+    transform: rotate(0deg);
   }
   50% {
     opacity: 1;
   }
   100% {
     opacity: 0;
-    transform: translate(-2em, 1em) rotate(360deg);
+    transform: rotate(360deg);
   }
 `;
 
@@ -59,6 +59,7 @@ const Background = styled(FlexBox)`
   min-height: 100%;
   width: 100%;
   background-color: #141625;
+  position: relative;
   justify-content: flex-start;
   align-items: flex-start;
   padding: 4rem;
@@ -77,6 +78,8 @@ const FunButton = styled(Button)<{ isTransitioning: boolean }>`
   );
   background-size: 350% 100%;
   background-position: 100%;
+  position: relative;
+  z-index: 10;
   border: none;
   width: 40vw;
   padding: 1rem;
@@ -87,17 +90,28 @@ const FunButton = styled(Button)<{ isTransitioning: boolean }>`
   }
 `;
 
-const Bubble1 = styled.div<{ isTransitioning: boolean }>`
+const Star = styled.div<{
+  isTransitioning: boolean;
+  top: number;
+  left: number;
+}>`
   background-image: url('/Star4.png');
   background-size: contain;
+  position: absolute;
+  top: ${({ top }) => top}vh;
+  left: ${({ left }) => left}vw;
   height: 2rem;
   width: 2rem;
   opacity: 0;
   ${({ isTransitioning }) =>
-    toggleAnimation(DisplayBubble1, animationTimer, isTransitioning, 'linear')}
+    toggleAnimation(StarAnimation, animationTimer, isTransitioning, 'linear')}
 `;
 
-const Bubble2 = styled.div<{ isTransitioning: boolean }>`
+const Rock = styled.div<{
+  isTransitioning: boolean;
+  top: number;
+  left: number;
+}>`
   background: radial-gradient(
     67.92% 67.92% at 64.15% 32.08%,
     #ece3e5 0%,
@@ -105,11 +119,14 @@ const Bubble2 = styled.div<{ isTransitioning: boolean }>`
   );
   border-radius: 100%;
   background-size: contain;
+  position: absolute;
+  top: ${({ top }) => top}vh;
+  left: ${({ left }) => left}vw;
   height: 2rem;
   width: 2rem;
   opacity: 0;
   ${({ isTransitioning }) =>
-    toggleAnimation(DisplayBubble, animationTimer, isTransitioning, 'linear')}
+    toggleAnimation(RockAnimation, animationTimer, isTransitioning, 'linear')}
 `;
 
 const ClickMeCutOut = styled.svg`
@@ -130,8 +147,8 @@ const Gradient: React.FC = () => {
   return (
     <Layout>
       <Background center>
-        <Bubble1 isTransitioning={isTransitioning} />
-        <Bubble2 isTransitioning={isTransitioning} />
+        <Star isTransitioning={isTransitioning} left={10} top={10} />
+        <Rock isTransitioning={isTransitioning} left={50} top={50} />
         <FunButton onClick={onClick}>
           <ClickMeCutOut
             fill="none"
