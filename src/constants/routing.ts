@@ -7,4 +7,5 @@ export const BUTTON_ROUTES = [
   'gradient',
   'spin',
   'intro',
+  'dance',
 ];

@@ -94,6 +94,7 @@ const Star = styled.div<{
   isTransitioning: boolean;
   top: number;
   left: number;
+  animationDelay: number;
 }>`
   background-image: url('/Star4.png');
   background-size: contain;
@@ -104,7 +105,8 @@ const Star = styled.div<{
   width: 2rem;
   opacity: 0;
   ${({ isTransitioning }) =>
-    toggleAnimation(StarAnimation, animationTimer, isTransitioning, 'linear')}
+    toggleAnimation(StarAnimation, animationTimer, isTransitioning, 'linear')};
+  animation-delay: ${({ animationDelay }) => animationDelay}ms;
 `;
 
 const Rock = styled.div<{
@@ -147,12 +149,42 @@ const Gradient: React.FC = () => {
   return (
     <Layout>
       <Background center>
-        <Star isTransitioning={isTransitioning} left={5} top={5} />
-        <Star isTransitioning={isTransitioning} left={1} top={2} />
-        <Star isTransitioning={isTransitioning} left={40} top={90} />
-        <Star isTransitioning={isTransitioning} left={80} top={10} />
-        <Star isTransitioning={isTransitioning} left={10} top={60} />
-        <Star isTransitioning={isTransitioning} left={80} top={10} />
+        <Star
+          animationDelay={1000}
+          isTransitioning={isTransitioning}
+          left={5}
+          top={5}
+        />
+        <Star
+          animationDelay={0}
+          isTransitioning={isTransitioning}
+          left={1}
+          top={2}
+        />
+        <Star
+          animationDelay={100}
+          isTransitioning={isTransitioning}
+          left={40}
+          top={90}
+        />
+        <Star
+          animationDelay={400}
+          isTransitioning={isTransitioning}
+          left={80}
+          top={10}
+        />
+        <Star
+          animationDelay={50}
+          isTransitioning={isTransitioning}
+          left={10}
+          top={60}
+        />
+        <Star
+          animationDelay={0}
+          isTransitioning={isTransitioning}
+          left={80}
+          top={10}
+        />
         <Rock isTransitioning={isTransitioning} left={50} top={50} />
         <Rock isTransitioning={isTransitioning} left={50} top={50} />
         <FunButton onClick={onClick}>

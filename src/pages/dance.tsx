@@ -32,14 +32,14 @@ const LetterDance = keyframes`
 const Background = styled(FlexBox)`
   min-height: 100%;
   width: 100%;
-  background-color: white;
+  background-color: #c24532;
   justify-content: flex-end;
   padding: 5em;
 `;
 
 const FunButton = styled(Button)`
-  background-color: #efefef;
-  color: black;
+  background-color: #f9f9f9;
+  color: #22181b;
   font-size: 2em;
   border: none;
   padding: 0.5em;
@@ -51,6 +51,9 @@ const Letter = styled.p<{ animationDelay: number }>`
   font-family: 'Fira Sans', sans-serif;
   animation: ${LetterDance} 1.5s infinite linear;
   animation-delay: ${({ animationDelay }) => animationDelay}ms;
+  :hover {
+    color: #e28a3c;
+  }
 `;
 
 const Loading: React.FC = () => {
