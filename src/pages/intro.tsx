@@ -9,7 +9,7 @@ import { useGetPushFn } from '~/logic/routing';
 import { delay } from '~/logic/util/delay';
 import { toggleAnimation } from '~/logic/util/styles';
 
-const animationTimer = 2000;
+const animationTimer = 0;
 
 const Corners = keyframes`
   0%{
@@ -53,7 +53,7 @@ const FunButton = styled(Button)`
     animation: none;
     background-color: #ffe66d;
     color: #2727e6;
-    border: none;
+    border: 2px solid #ffe66d;
   }
 `;
 

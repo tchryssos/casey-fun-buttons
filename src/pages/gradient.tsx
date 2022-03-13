@@ -147,7 +147,13 @@ const Gradient: React.FC = () => {
   return (
     <Layout>
       <Background center>
-        <Star isTransitioning={isTransitioning} left={10} top={10} />
+        <Star isTransitioning={isTransitioning} left={5} top={5} />
+        <Star isTransitioning={isTransitioning} left={1} top={2} />
+        <Star isTransitioning={isTransitioning} left={40} top={90} />
+        <Star isTransitioning={isTransitioning} left={80} top={10} />
+        <Star isTransitioning={isTransitioning} left={10} top={60} />
+        <Star isTransitioning={isTransitioning} left={80} top={10} />
+        <Rock isTransitioning={isTransitioning} left={50} top={50} />
         <Rock isTransitioning={isTransitioning} left={50} top={50} />
         <FunButton onClick={onClick}>
           <ClickMeCutOut
