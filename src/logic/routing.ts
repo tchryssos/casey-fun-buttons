@@ -1,15 +1,12 @@
-import { random } from 'lodash';
 import { useRouter } from 'next/router';
 
 import { BUTTON_ROUTES } from '~/constants/routing';
 
-export const getDifferentRoute = (currentPath: string) => {
-  const filteredRoutes = BUTTON_ROUTES.filter((r) => `/${r}` !== currentPath);
-  return `/${filteredRoutes[random(0, filteredRoutes.length - 1)]}`;
-};
-
 export const useGetPushFn = () => {
   const { pathname, push } = useRouter();
 
-  return () => push(getDifferentRoute(pathname));
+  let nextPageIndex = BUTTON_ROUTES.indexOf(pathname) + 1;
+  nextPageIndex = nextPageIndex === BUTTON_ROUTES.length ? 0 : nextPageIndex;
+
+  return () => push(BUTTON_ROUTES[nextPageIndex]);
 };
